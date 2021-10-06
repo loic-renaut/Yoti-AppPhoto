@@ -64,6 +64,7 @@ Widget::Widget(QWidget *parent)
          *
          * */
 
+        /*
         db = QSqlDatabase::addDatabase("QMYSQL");
         db.setHostName("localhost");
         //db.setUserName("root");
@@ -71,19 +72,19 @@ Widget::Widget(QWidget *parent)
         //db.setPassword("1234");
         db.setPassword(page_loginLineEditPassword->text());
         db.setDatabaseName("yoti_test");
+        */
 
 
-        /*
-            // connexion bdd ovh
-            db = QSqlDatabase::addDatabase("QMYSQL");
-            db.setHostName("rl239142-001.dbaas.ovh.net");
-            db.setPort(35191);
-            //db.setUserName("loic");
-            db.setUserName(page_loginLineEditPseudo->text());
-            //db.setPassword("qZJchZ7T");
-            db.setPassword(page_loginLineEditPassword->text());
-            db.setDatabaseName("jouets");
-*/
+        // connexion bdd ovh
+        db = QSqlDatabase::addDatabase("QMYSQL");
+        db.setHostName("rl239142-001.dbaas.ovh.net");
+        db.setPort(35191);
+        //db.setUserName("loic");
+        db.setUserName(page_loginLineEditPseudo->text());
+        //db.setPassword("qZJchZ7T");
+        db.setPassword(page_loginLineEditPassword->text());
+        db.setDatabaseName("yoti_test");
+
 
         if(db.open())
         {
@@ -154,7 +155,8 @@ Widget::Widget(QWidget *parent)
 
             if (QCameraInfo::availableCameras().count() > 0)
             {
-                page_takePictureCamera = new QCamera("/dev/video0", this);
+                page_takePictureCamera = new QCamera;
+                //page_takePictureCamera = new QCamera("/dev/video0", this);
 
                 // Par exemple :
                 QCameraViewfinderSettings viewfinderSettings;
