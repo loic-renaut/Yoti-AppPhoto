@@ -45,9 +45,6 @@ Widget::Widget(QWidget *parent)
     page_loginGroupBoxLayout->addRow("Pseudo :", page_loginLineEditPseudo);
     page_loginGroupBoxLayout->addRow("Mot de passe :", page_loginLineEditPassword);
 
-    page_loginLineEditPseudo->setText("root");
-    page_loginLineEditPassword->setText("1234");
-
     page_loginGroupBox->setLayout(page_loginGroupBoxLayout);
     page_loginLayout->addWidget(page_loginGroupBox);
 
@@ -55,6 +52,10 @@ Widget::Widget(QWidget *parent)
     page_loginLayout->addWidget(page_loginDialogButtonBox);
 
     page_login->setLayout(page_loginLayout);
+
+    connect(page_loginDialogButtonBox, &QDialogButtonBox::rejected, this, [&] () {
+       QCoreApplication::quit();
+    });
 
     connect(page_loginDialogButtonBox, &QDialogButtonBox::accepted, this, [&] () {
         /*
